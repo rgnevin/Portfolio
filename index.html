@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Ross Nevin</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="assets/css/mystyles.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script type="text/javascript" src="paper-full.js"></script>
+		<script type="text/paperscript" canvas="myCanvas">// The amount of circles we want to make:
+			var count = 0;
+			var frameCount = 60
+			// Create a symbol, which we will use to place instances of later:
+			var path = new Path.Circle({
+					center: [0, 0],
+					radius: 10,
+					fillColor: 'blue',
+					strokeColor: 'black'
+				});	
+			var symbol = new Symbol(path);
+	
+			// The onFrame function is called up to 60 times a second:
+			function onFrame(event) {
+	
+				if (frameCount === 60) {
+	
+			// Place the instances of the symbol:
+					var center = new Point.random() * view.size;
+					symbol.place(center);
+					// placedSymbol.scale(i / count);
+					count = count+1;
+					frameCount = 0;
+				}
+				
+				// Run through the active layer's children list and change
+				for (var i = 0; i < count; i++) {
+					var item = project.activeLayer.children[i];
+					
+					// Move the item 1/20th of its width to the right. This way
+					// larger circles move faster than smaller circles:
+	
+					item.position.y += item.bounds.height / 10;
+			
+					// If the item has left the view on the right, move it back
+					// to the left:
+					if (item.bounds.bottom > view.size.height) {
+						item.position.y = -item.bounds.height;
+					}
+				}
+				frameCount= frameCount + 1;
+				
+			}
+		</script>
+		<!-- <script type="text/javascript" src="assets/js/myJS.js"></script> -->
+	</head>
+	<body class="landing is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1><a href="index.html">Ross Nevin</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="#banner">Home</a></li>
+											<li><a href="#one">About Me</a></li>
+											<li><a href="#two">Projects</a></li>
+											<li><a href="#three">Resume</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
+<!-- <canvas></canvas> -->
+				<!-- Banner -->
+					<section id="banner">
+						<canvas style="width:100%; height: 100%;" id="myCanvas"></canvas>
+						<div class="inner">
+
+							<h2>Ross Nevin</h2>
+							<p id="just4U">Full Stack Web Developer</p>
+						</div>
+						<a href="#one" class="more scrolly" >Learn More</a>
+					</section>
+
+				<!-- One -->
+					<section id="one" class="wrapper style1 special">
+						<div class="inner">
+							<header class="major">
+								<h2>About Me</h2>
+								<p>I am a passionate developer, well versed in 
+									contemporary best practices and technologies. I love 
+									learning new technologies and creating things that only a short 
+									while ago seemed impossible. Right now, I'm learning React but I am ready to work for you today! </p>
+							</header>
+							<ul class="icons major">
+								<li><span class=" major"></span><i class=" fab fa-html5"></i></span></li>
+								<li><span class=" major"></span><i class=" fab fa-js major"></i></span></li>
+								<li><span class=" major"></span><i class=" fab fa-css3-alt major"></i></span></li>
+								<li><span class=" major"><i class=" fab fa-bootstrap major"></i></span></li>
+								<li><span class=" major"></span><i class=" fab fa-node-js major"></i></span></li>
+							</ul>
+						</div>
+					</section>
+
+				<!-- Two -->
+					<section id="two" class="wrapper alt style2">
+						<section class="spotlight">
+							<div class="image"><img src="images/pic01.jpg" alt="" /></div><div class="content">
+								<h2>Welp: Restaurant App</h2>
+								<p>Utlizes MongoDB, Boostrap,Google Cloud API(for maps) and NodeJS. This site is collection of local restaurants with photos, location info, and contact information. </p>
+							</div>
+						</section>
+						<section class="spotlight">
+							<div style="width:100%;height:100%;padding-bottom:30%;position:relative;"><iframe src="https://giphy.com/embed/dzDpJzfcGj7SZVAClj" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/dzDpJzfcGj7SZVAClj">via GIPHY</a></p><div class="content">
+								<h2>Emoji War</h2>
+								<p>Like the classic card game war but with Emojis! Built using Vanilla JS.</p>
+								<p class="link-buttons"><a target="_blank" href="https://github.com/rgnevin/emojiWar" class="button primary">See Code</a><a target="_blank" href="https://rgnevin.github.io/emojiWar/" class="button primary">Play It</a></p>
+							</div>
+						</section>
+						<section class="spotlight">
+							<div class="image"><img src="images/pic03.jpg" alt="" /></div><div class="content">
+								<h2>Rey Ross</h2>
+								<p>A simple website for my musical endeavors utilizing Bootstrap and JQuery</p>
+							</div>
+						</section>
+					</section>
+
+				<!-- Three -->
+					<section id="three" class="wrapper style3 special">
+						<div class="inner">
+							<header class="major">
+								<h2>Resume Goes Here</h2>
+								<p>This is where the resume actually goes</p>
+							</header>
+						</div>
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/ross-nevin-a4746a93/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/rgnevin" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js.myJS.js"></script>
+
+	</body>
+</html>
